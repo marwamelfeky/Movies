@@ -155,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				84CF72202A7C1EF600AF2CB0 /* Model */,
-				84AC51DC2A7BD5430079BBFF /* Network Layer */,
+				84AC51DC2A7BD5430079BBFF /* Network */,
 				84AC51DB2A7BD5390079BBFF /* View */,
 				84AC51DA2A7BD52E0079BBFF /* View Model */,
 			);
@@ -165,7 +165,7 @@
 		84AC51D72A7BD4EE0079BBFF /* Movies Details */ = {
 			isa = PBXGroup;
 			children = (
-				84CF72222A7C543D00AF2CB0 /* Network Layer */,
+				84CF72222A7C543D00AF2CB0 /* Network */,
 				84AC51D92A7BD5200079BBFF /* View Model */,
 				84AC51D82A7BD5170079BBFF /* View */,
 			);
@@ -205,12 +205,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		84AC51DC2A7BD5430079BBFF /* Network Layer */ = {
+		84AC51DC2A7BD5430079BBFF /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				84AC51E32A7BE5210079BBFF /* MoviesListService.swift */,
 			);
-			path = "Network Layer";
+			path = Network;
 			sourceTree = "<group>";
 		};
 		84AC51DD2A7BD5CB0079BBFF /* Movies End Points */ = {
@@ -247,12 +247,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		84CF72222A7C543D00AF2CB0 /* Network Layer */ = {
+		84CF72222A7C543D00AF2CB0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				84CF721E2A7C0BF200AF2CB0 /* MovieDetailsService.swift */,
 			);
-			path = "Network Layer";
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
