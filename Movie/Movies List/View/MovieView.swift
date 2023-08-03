@@ -9,43 +9,36 @@ import SwiftUI
 
 import URLImage
 
-struct MoviesView: View {
+struct MovieView: View {
     
     let movie: Movie
-    
+    private let imageWidth = 100.0
+    private let imageHeight = 150.0
+    private let stackSpacing = 4.0
     var body: some View {
-        HStack {
-            if let imgUrl = movie.poster,
+        HStack(alignment: .top, spacing:4) {
+            let imgUrl = movie.image
+            if
                let url = URL(string: imgUrl) {
                 
-                URLImage(url: url,
-                         options: URLImageOptions(
-                            identifier: movie.id,
-                            cachePolicy: .returnCacheElseLoad(cacheDelay: nil, downloadDelay: 0.25)
-                         ),
-                         failure: { error, _ in
-                    PlaceholderImageView()
-                },
-                         content: { image in
+                URLImage(url) { image in
                     image
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
-                })
-                    .frame(width: 100, height: 100)
-                    .cornerRadius(10)
+                        .frame(width:imageWidth , height: imageHeight).cornerRadius(5.0)
+                }
             } else {
                 PlaceholderImageView()
             }
             
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: stackSpacing) {
                 Text(movie.title ?? "")
                     .foregroundColor(.black)
-                    .font(.system(size: 18, weight: .semibold))
-                Text(movie.date ?? "N/A")
-                    .foregroundColor(.gray)
+                    .font(.headline)
+                Text(movie.year)
+                    .foregroundColor(.black)
                     .font(.footnote)
             }
-        }
+        }.padding(EdgeInsets(top: 10.0, leading: 10.0, bottom: 10.0, trailing: 10.0))
     }
 }
 
@@ -53,14 +46,13 @@ struct PlaceholderImageView: View {
     var body: some View {
         Image(systemName: "photo.fill")
             .foregroundColor(.white)
-            .background(Color.gray)
-            .frame(width: 100, height: 100)
+            .background(Color.white)
     }
 }
 
-struct ArticleView_Previews: PreviewProvider {
+struct MoviesView_Previews: PreviewProvider {
     static var previews: some View {
-        ArticleView(article: Article.dummyData)
+        MovieView(movie: Movie())
             .previewLayout(.sizeThatFits )
     }
 }

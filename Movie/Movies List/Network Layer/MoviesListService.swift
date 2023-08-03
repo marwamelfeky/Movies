@@ -8,11 +8,11 @@
 import Foundation
 import Combine
 
-protocol MoviesServiceProtocol {
+protocol MoviesListServiceProtocol {
     func getMoviesList(from endpoint: MoviesEndPoint) -> AnyPublisher<MoviesList, APIError>
 }
 
-struct MoviesListService:  MoviesServiceProtocol {
+struct MoviesListService:  MoviesListServiceProtocol {
     
     func getMoviesList(from endpoint: MoviesEndPoint) -> AnyPublisher<MoviesList, APIError> {
         return URLSession
@@ -23,15 +23,12 @@ struct MoviesListService:  MoviesServiceProtocol {
             .flatMap { data, response -> AnyPublisher<MoviesList, APIError> in
                 
                 guard let response = response as? HTTPURLResponse else {
-                    print("Error")
                     return Fail(error: APIError.unknown).eraseToAnyPublisher()
                 }
                 if (200...299).contains(response.statusCode) {
-                    print("response status code \(response.statusCode) of \(endpoint.path)")
                     let jsonDecoder = JSONDecoder()
                     let str = String(decoding: data, as: UTF8.self)
                     print("Data of \(endpoint.path ) is \(str)")
-
                     print(str)
                     print(Just(data)
                         .decode(type: MoviesList.self , decoder: jsonDecoder)
@@ -42,7 +39,6 @@ struct MoviesListService:  MoviesServiceProtocol {
                         .mapError { _ in APIError.decodingError }
                         .eraseToAnyPublisher()
                 } else {
-                    print("MoviesServiceImpl Failes")
                     return Fail(error: APIError.errorCode(response.statusCode)).eraseToAnyPublisher()
                 }
                 

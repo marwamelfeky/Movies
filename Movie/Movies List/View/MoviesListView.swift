@@ -6,33 +6,32 @@
 //
 
 import SwiftUI
-
+import Combine
 
 struct MovieListView: View {
     
-    //@Environment(\.openURL) var openUrl
-    
-    @StateObject var viewModel = MoviesListViewModel(service: MoviesService())
-    
+    @StateObject var viewModel = MoviesListViewModel(service: MoviesListService())
+    private let rowHeight = 160.0
     var body: some View {
+        
         NavigationView {
-            List(viewModel.movies) { item in
-                MovieView(movie: item)
-            }.onAppear {
-                self.viewModel.getMovies()
-            }
+
+                List(viewModel.movies) { item in
+                    
+                    NavigationLink {
+                        MoviesDetailsView(movie: item)
+                    } label: {
+                        MovieView(movie: item)
+                    }.frame(height: rowHeight).listRowInsets(EdgeInsets())
+                }.onAppear {
+                    self.viewModel.getMovies()
+                }
+            
             .navigationTitle(Text("Movies"))
         }
                     
         
-    }
-    func load(url: String?) {
-        guard let link = url,
-              let url = URL(string: link) else { return }
-
-        //openUrl(url)
-    }
-    
+    }    
 }
 
 struct MovieListView_Previews: PreviewProvider {

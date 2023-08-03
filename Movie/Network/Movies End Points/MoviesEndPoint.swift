@@ -17,7 +17,7 @@ protocol Request {
 
 enum MoviesEndPoint {
     case getMoviesList(adult:String , video:String ,sortBy:SortedBy)
-    case getMoviesListDetails(movieID:String)
+    case getMoviesListDetails(movieID:Int)
 }
 
 extension MoviesEndPoint: Request {

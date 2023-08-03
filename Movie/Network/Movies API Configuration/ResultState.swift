@@ -7,6 +7,7 @@
 
 import Foundation
 enum ResultState {
+    case loading
     case success(content: [Movie])
     case successDetails(content: Movie)
     case failed(error: Error)
