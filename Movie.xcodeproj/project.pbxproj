@@ -165,7 +165,7 @@
 		84AC51D72A7BD4EE0079BBFF /* Movies Details */ = {
 			isa = PBXGroup;
 			children = (
-				84CF721E2A7C0BF200AF2CB0 /* MovieDetailsService.swift */,
+				84CF72222A7C543D00AF2CB0 /* Network Layer */,
 				84AC51D92A7BD5200079BBFF /* View Model */,
 				84AC51D82A7BD5170079BBFF /* View */,
 			);
@@ -245,6 +245,14 @@
 				84AC51E52A7BE57A0079BBFF /* Movie.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		84CF72222A7C543D00AF2CB0 /* Network Layer */ = {
+			isa = PBXGroup;
+			children = (
+				84CF721E2A7C0BF200AF2CB0 /* MovieDetailsService.swift */,
+			);
+			path = "Network Layer";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
